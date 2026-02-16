@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Wify Prinsi 💖</title>
+
+<style>
+body{
+margin:0;
+padding:0;
+overflow:hidden;
+font-family:Arial;
+}
+
+/* 🔐 Secret Code Screen */
+#passwordScreen{
+position:fixed;
+width:100%;
+height:100vh;
+background:linear-gradient(135deg,#ff9ec4,#ff66cc);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+transition:opacity 0.8s;
+}
+
+.shake{
+animation:shake 0.4s;
+}
+@keyframes shake{
+0%{transform:translateX(0);}
+25%{transform:translateX(-10px);}
+50%{transform:translateX(10px);}
+75%{transform:translateX(-10px);}
+100%{transform:translateX(0);}
+}
+
+#passwordScreen input{
+padding:12px;
+border-radius:20px;
+border:none;
+text-align:center;
+font-size:16px;
+outline:none;
+}
+
+/* 🌸 Flower Rain */
+.flower{
+position:fixed;
+top:-10px;
+font-size:20px;
+animation:fall 6s linear infinite;
+}
+@keyframes fall{
+0%{transform:translateY(-10px);}
+100%{transform:translateY(110vh);}
+}
+
+/* 💥 Explosion */
+.explode{
+position:absolute;
+font-size:22px;
+animation:blast 1s ease-out forwards;
+}
+@keyframes blast{
+0%{opacity:1;}
+100%{opacity:0; transform:translate(var(--x),var(--y)) scale(2);}
+}
+
+/* 🎆 Big Blast */
+.bigHeart{
+position:absolute;
+font-size:40px;
+animation:bigBlast 1.2s ease-out forwards;
+}
+@keyframes bigBlast{
+0%{opacity:1; transform:scale(0.5);}
+100%{opacity:0; transform:scale(3);}
+}
+
+/* 🎉 Confetti */
+.confetti{
+position:fixed;
+top:-10px;
+font-size:20px;
+animation:fall 4s linear infinite;
+}
+
+/* Screens */
+.screen{
+position:fixed;
+width:100%;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+color:white;
+transition:transform 0.8s ease;
+}
+
+#screen1{
+background:url('https://i.postimg.cc/63J3jGGY/file-000000006f8471fa9d6440c0cb630f3a.png') no-repeat center center;
+background-size:cover;
+}
+
+#screen2{
+background:linear-gradient(135deg,#ff9ec4,#ffc1da);
+transform:translateX(100%);
+}
+
+#screen3{
+background:linear-gradient(135deg,#ff1493,#ff66cc);
+transform:translateX(200%);
+}
+
+/* Button */
+button{
+padding:14px 30px;
+border:none;
+border-radius:30px;
+background:#ff1493;
+color:white;
+font-size:16px;
+cursor:pointer;
+box-shadow:0 0 15px pink;
+margin-top:20px;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+.bounce{
+animation:bounce 1s infinite;
+}
+@keyframes bounce{
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.2);}
+}
+
+.text{
+font-size:22px;
+font-weight:bold;
+text-shadow:2px 2px 8px black;
+margin:10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔐 Secret Code Screen -->
+<div id="passwordScreen">
+<h2 style="color:white;">Enter Our Secret Code 💖</h2>
+<input type="text" id="passInput" placeholder="Enter secret code">
+<button onclick="checkPassword()">Unlock 💕</button>
+<p id="wrongPass" style="color:white;margin-top:10px;"></p>
+</div>
+
+<!-- Screen 1 -->
+<div id="screen1" class="screen">
+<button onclick="next1()">Touch My Heart 💖</button>
+</div>
+
+<!-- Screen 2 -->
+<div id="screen2" class="screen">
+<div id="typing" class="text"></div>
+<button onclick="next2()">Next 💘</button>
+</div>
+
+<!-- Screen 3 -->
+<div id="screen3" class="screen">
+<h1>Will You Stay With Me Forever? 💍🥺</h1>
+<h2>My Wify, Prinsi 💖</h2>
+<button class="bounce" onclick="finalYes()">YES 💖</button>
+<div id="surpriseMsg" style="margin-top:20px;font-size:20px;"></div>
+</div>
+
+<script>
+
+document.getElementById("passInput").addEventListener("keypress",function(e){
+if(e.key==="Enter"){ checkPassword(); }
+});
+
+function checkPassword(){
+let pass=document.getElementById("passInput").value;
+
+if(pass==="loveuprinsi"){
+let screen=document.getElementById("passwordScreen");
+screen.style.opacity="0";
+setTimeout(()=>{
+screen.style.display="none";
+},800);
+}else{
+document.getElementById("wrongPass").innerHTML="Wrong Code 💔 Try Again";
+document.getElementById("passwordScreen").classList.add("shake");
+setTimeout(()=>{
+document.getElementById("passwordScreen").classList.remove("shake");
+},400);
+}
+}
+
+/* 🌸 Flower Rain */
+setInterval(()=>{
+let f=document.createElement("div");
+f.className="flower";
+f.innerHTML="🌸";
+f.style.left=Math.random()*100+"vw";
+document.body.appendChild(f);
+setTimeout(()=>{f.remove();},6000);
+},300);
+
+/* 💥 Explosion */
+function heartExplosion(){
+for(let i=0;i<50;i++){
+let h=document.createElement("div");
+h.className="explode";
+h.innerHTML="💖";
+h.style.left="50%";
+h.style.top="50%";
+h.style.setProperty("--x",(Math.random()*600-300)+"px");
+h.style.setProperty("--y",(Math.random()*600-300)+"px");
+document.body.appendChild(h);
+setTimeout(()=>{h.remove();},1000);
+}
+}
+
+/* 🎉 Confetti */
+function confettiRain(){
+for(let i=0;i<80;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.innerHTML="🎉";
+c.style.left=Math.random()*100+"vw";
+document.body.appendChild(c);
+setTimeout(()=>{c.remove();},4000);
+}
+}
+
+/* 🎆 Big Heart Blast */
+function bigHeartBlast(){
+for(let i=0;i<20;i++){
+let b=document.createElement("div");
+b.className="bigHeart";
+b.innerHTML="💖";
+b.style.left=Math.random()*100+"vw";
+b.style.top=Math.random()*100+"vh";
+document.body.appendChild(b);
+setTimeout(()=>{b.remove();},1200);
+}
+}
+
+/* 💍 Final YES */
+function finalYes(){
+heartExplosion();
+confettiRain();
+bigHeartBlast();
+
+let msg=document.getElementById("surpriseMsg");
+
+msg.innerHTML="💍 Proposal Accepted 💖 Forever Together 🥰✨";
+
+setTimeout(()=>{
+msg.innerHTML+="<br><br>💥 Batao fir shadi kab kr rhe h..😅🙃✨️💘👀";
+heartExplosion();
+},1500);
+}
+
+function next1(){
+heartExplosion();
+document.getElementById("screen1").style.transform="translateX(-100%)";
+document.getElementById("screen2").style.transform="translateX(0)";
+typeText();
+}
+
+function next2(){
+heartExplosion();
+document.getElementById("screen2").style.transform="translateX(-100%)";
+document.getElementById("screen3").style.transform="translateX(0)";
+}
+
+function typeText(){
+let text="Uh are my life my baccha.. 🥰💓 Please never leave me alone.. 🙏👀✨";
+let i=0;
+let target=document.getElementById("typing");
+target.innerHTML="";
+let typing=setInterval(()=>{
+target.innerHTML+=text.charAt(i);
+i++;
+if(i>=text.length){ clearInterval(typing); }
+},50);
+}
+
+</script>
+
+</body>
+  </html>
